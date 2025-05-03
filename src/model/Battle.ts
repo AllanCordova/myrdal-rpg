@@ -26,7 +26,10 @@ export default class Battle {
     if (demange === 0) {
       this._enemy.defense = this._enemy.defense - this._player.attack;
     }
-    this._enemy.defense = Math.max(this._enemy.defense - demange, 0);
+    this._enemy.defense = Math.max(
+      this._enemy.defense - this._player.attack,
+      0
+    );
     this._enemy.hp = Math.max(this._enemy.hp - demange, 0);
   }
 
@@ -38,16 +41,19 @@ export default class Battle {
     if (demange === 0) {
       this._player.defense = this._player.defense - this._enemy.attack;
     }
-    this._player.defense = Math.max(this._player.defense - demange, 0);
+    this._player.defense = Math.max(
+      this._player.defense - this._enemy.attack,
+      0
+    );
     this._player.hp = Math.max(this._player.hp - demange, 0);
   }
 
   public defendEnemy(): void {
-    this._player.defense *= 1.2;
+    this._player.defense = Math.floor(this._player.defense * 1.3);
   }
 
   public defendPlayer(): void {
-    this._enemy.defense *= 1.2;
+    this._enemy.defense = Math.floor(this._enemy.defense * 1.3);
   }
 
   public getPlayerDamage(): number {
@@ -58,5 +64,13 @@ export default class Battle {
   public getEnemyDamage(): number {
     const demange = Math.max(this._enemy.attack - this._player.defense, 0);
     return demange;
+  }
+
+  public get playerDefend(): number {
+    return this._player.defense;
+  }
+
+  public get enemyDefend(): number {
+    return this._enemy.defense;
   }
 }

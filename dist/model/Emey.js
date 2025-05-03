@@ -12,7 +12,7 @@ class Enemy extends Persona_1.default {
         this.name = "Diablo";
         this.hp = 180;
         this.attack = 220;
-        this.defense = 120;
+        this.defense = 20;
         this.classType = "devil";
     }
     startOrc() {

@@ -1,18 +1,26 @@
 import Enemy from "../model/Emey";
 import Player from "../model/Player";
+import ViewConsole from "../view/ViewConsole";
 import ViewMenu from "../view/ViewMenu";
 
 export default class ControllerPerson {
   readonly _player: Player;
   private _viewMenu: ViewMenu;
+  private _viewConsole: ViewConsole;
 
   public constructor() {
     this._player = new Player();
-    this._viewMenu = new ViewMenu();
+    this._viewConsole = new ViewConsole();
+    this._viewMenu = new ViewMenu(this._viewConsole);
   }
 
   public startPlayer(): void {
     const name: string = this._viewMenu.playerName();
+    if (name.trim() === "") {
+      this._viewMenu.nameValid();
+      return this.startPlayer();
+    }
+
     switch (this._viewMenu.personMenu()) {
       case "1":
         this._player.startAngel(name);

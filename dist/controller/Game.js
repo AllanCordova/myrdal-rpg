@@ -7,9 +7,11 @@ const ViewMenu_1 = __importDefault(require("../view/ViewMenu"));
 const ControllerPerson_1 = __importDefault(require("./ControllerPerson"));
 const ContollerBattle_1 = __importDefault(require("./ContollerBattle"));
 const Db_1 = __importDefault(require("../data/Db"));
+const ViewConsole_1 = __importDefault(require("../view/ViewConsole"));
 class Game {
     constructor() {
-        this._viewMenu = new ViewMenu_1.default();
+        this._viewConsole = new ViewConsole_1.default();
+        this._viewMenu = new ViewMenu_1.default(this._viewConsole);
         this._controllerPerson = new ControllerPerson_1.default();
         this._db = new Db_1.default();
     }
@@ -24,7 +26,7 @@ class Game {
                     const enemy = this._db.enemys[i];
                     this._controllerBattle = new ContollerBattle_1.default(player, enemy);
                     this._controllerBattle.startBattle();
-                    console.log(this._controllerBattle.endRound());
+                    this._controllerBattle.endRound();
                     if (!player.isLive()) {
                         this._controllerBattle.gameOver();
                         break;
@@ -36,7 +38,8 @@ class Game {
             case "3":
                 break;
             default:
-                console.log("it is not value valid!");
+                this._viewMenu.fluxValid();
+                return this.startGame();
         }
     }
 }

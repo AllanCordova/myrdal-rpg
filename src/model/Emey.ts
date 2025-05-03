@@ -9,7 +9,7 @@ export default class Enemy extends Persona {
     this.name = "Diablo";
     this.hp = 180;
     this.attack = 220;
-    this.defense = 120;
+    this.defense = 20;
     this.classType = "devil";
   }
 

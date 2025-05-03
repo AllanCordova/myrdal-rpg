@@ -2,15 +2,18 @@ import ViewMenu from "../view/ViewMenu";
 import ControllerPerson from "./ControllerPerson";
 import ControllerBattle from "./ContollerBattle";
 import Db from "../data/Db";
+import ViewConsole from "../view/ViewConsole";
 
 export default class Game {
   private _viewMenu: ViewMenu;
   private _controllerPerson: ControllerPerson;
   private _controllerBattle!: ControllerBattle;
+  private _viewConsole: ViewConsole;
   private _db: Db;
 
   public constructor() {
-    this._viewMenu = new ViewMenu();
+    this._viewConsole = new ViewConsole();
+    this._viewMenu = new ViewMenu(this._viewConsole);
     this._controllerPerson = new ControllerPerson();
     this._db = new Db();
   }
@@ -28,7 +31,7 @@ export default class Game {
           const enemy = this._db.enemys[i];
           this._controllerBattle = new ControllerBattle(player, enemy);
           this._controllerBattle.startBattle();
-          console.log(this._controllerBattle.endRound());
+          this._controllerBattle.endRound();
           if (!player.isLive()) {
             this._controllerBattle.gameOver();
             break;
@@ -40,7 +43,8 @@ export default class Game {
       case "3":
         break;
       default:
-        console.log("it is not value valid!");
+        this._viewMenu.fluxValid();
+        return this.startGame();
     }
   }
 }

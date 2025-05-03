@@ -4,21 +4,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const readline_sync_1 = __importDefault(require("readline-sync"));
+const chalk_1 = __importDefault(require("chalk"));
 class ViewMenu {
+    constructor(_viewConsole) {
+        this._viewConsole = _viewConsole;
+    }
     mainMenu() {
-        console.log(`Myrdal\n1.start\n2.about\n3.exit`);
-        return readline_sync_1.default.question("Whats your choice ... ");
+        console.clear();
+        this._viewConsole.showBorder();
+        console.log(`${chalk_1.default.bold.cyan(`"The Myrdal Ultimate"`)}${chalk_1.default.magenta(`\n\n1.Iniciar\n2.Sobre\n3.Sair\n`)}`);
+        this._viewConsole.showBorder();
+        return readline_sync_1.default.question(chalk_1.default.yellow("se quiser jogar so apertar 1 (por favor faça isso mestre) ... "));
     }
     battleMenu() {
-        console.log(`Your choice!\n1.Attack\n2.Defend`);
-        return readline_sync_1.default.question(`Whats your choice ... `);
+        this._viewConsole.showBorder();
+        console.log(`Seu turno mestre!\n1.Atacer\n2.Defender`);
+        this._viewConsole.showBorder();
+        return readline_sync_1.default.question(chalk_1.default.yellow(`vamos fazer o que essa rodada mestre? ... `));
     }
     personMenu() {
+        this._viewConsole.showBorder();
         console.log(`Choice class Type:\n1.Angel\n2.Fighter\n3.Mage`);
-        return readline_sync_1.default.question(`Whats your choice ... `);
+        this._viewConsole.showBorder();
+        return readline_sync_1.default.question(chalk_1.default.yellow(`qual classe você escolhe? isso diz muito sobre você ... `));
     }
     playerName() {
-        return readline_sync_1.default.question("Whats your person name ... ");
+        console.clear();
+        return readline_sync_1.default.question(chalk_1.default.magenta(`Escolha um nome! para seu perssonagem mestre! ... `));
+    }
+    nameValid() {
+        readline_sync_1.default.question(chalk_1.default.red(`preciso de um nome, para te chamar mestre! ... `));
+    }
+    fluxValid() {
+        readline_sync_1.default.question(chalk_1.default.magenta(`"você ta de brincadeira? isso não esta nas opções!" ... `));
     }
 }
 exports.default = ViewMenu;

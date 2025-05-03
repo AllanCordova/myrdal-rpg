@@ -5,14 +5,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Emey_1 = __importDefault(require("../model/Emey"));
 const Player_1 = __importDefault(require("../model/Player"));
+const ViewConsole_1 = __importDefault(require("../view/ViewConsole"));
 const ViewMenu_1 = __importDefault(require("../view/ViewMenu"));
 class ControllerPerson {
     constructor() {
         this._player = new Player_1.default();
-        this._viewMenu = new ViewMenu_1.default();
+        this._viewConsole = new ViewConsole_1.default();
+        this._viewMenu = new ViewMenu_1.default(this._viewConsole);
     }
     startPlayer() {
         const name = this._viewMenu.playerName();
+        if (name.trim() === "") {
+            this._viewMenu.nameValid();
+            return this.startPlayer();
+        }
         switch (this._viewMenu.personMenu()) {
             case "1":
                 this._player.startAngel(name);
