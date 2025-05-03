@@ -2,8 +2,8 @@ import Enemy from "./Emey";
 import Player from "./Player";
 
 export default class Battle {
-  private _player: Player;
-  private _enemy: Enemy;
+  readonly _player: Player;
+  readonly _enemy: Enemy;
 
   constructor(player: Player, enemy: Enemy) {
     this._player = player;
@@ -48,5 +48,15 @@ export default class Battle {
 
   public defendPlayer(): void {
     this._enemy.defense *= 1.2;
+  }
+
+  public getPlayerDamage(): number {
+    const damage = Math.max(this._player.attack - this._enemy.defense, 0);
+    return damage;
+  }
+
+  public getEnemyDamage(): number {
+    const demange = Math.max(this._enemy.attack - this._player.defense, 0);
+    return demange;
   }
 }

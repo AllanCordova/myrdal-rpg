@@ -12,7 +12,7 @@ export default class ControllerBattle {
   public constructor(player: Player, enemy: Enemy) {
     this._player = player;
     this._enemy = enemy;
-    this._battle = new Battle(player, enemy);
+    this._battle = new Battle(this._player, this._enemy);
     this._battleTurn = new BattleTurn(this._battle);
   }
 
@@ -24,5 +24,9 @@ export default class ControllerBattle {
 
   public endRound(): Player | Enemy {
     return this._battle.getWinner();
+  }
+
+  public gameOver(): void {
+    this._battleTurn.gameOver();
   }
 }

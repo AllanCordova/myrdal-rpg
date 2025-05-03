@@ -9,5 +9,16 @@ class ViewMenu {
         console.log(`Myrdal\n1.start\n2.about\n3.exit`);
         return readline_sync_1.default.question("Whats your choice ... ");
     }
+    battleMenu() {
+        console.log(`Your choice!\n1.Attack\n2.Defend`);
+        return readline_sync_1.default.question(`Whats your choice ... `);
+    }
+    personMenu() {
+        console.log(`Choice class Type:\n1.Angel\n2.Fighter\n3.Mage`);
+        return readline_sync_1.default.question(`Whats your choice ... `);
+    }
+    playerName() {
+        return readline_sync_1.default.question("Whats your person name ... ");
+    }
 }
 exports.default = ViewMenu;

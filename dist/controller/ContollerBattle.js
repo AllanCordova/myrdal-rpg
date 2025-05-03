@@ -9,7 +9,7 @@ class ControllerBattle {
     constructor(player, enemy) {
         this._player = player;
         this._enemy = enemy;
-        this._battle = new Battle_1.default(player, enemy);
+        this._battle = new Battle_1.default(this._player, this._enemy);
         this._battleTurn = new BattleTurn_1.default(this._battle);
     }
     startBattle() {
@@ -19,6 +19,9 @@ class ControllerBattle {
     }
     endRound() {
         return this._battle.getWinner();
+    }
+    gameOver() {
+        this._battleTurn.gameOver();
     }
 }
 exports.default = ControllerBattle;

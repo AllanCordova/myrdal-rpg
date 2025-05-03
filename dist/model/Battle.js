@@ -33,5 +33,13 @@ class Battle {
     defendPlayer() {
         this._enemy.defense *= 1.2;
     }
+    getPlayerDamage() {
+        const damage = Math.max(this._player.attack - this._enemy.defense, 0);
+        return damage;
+    }
+    getEnemyDamage() {
+        const demange = Math.max(this._enemy.attack - this._player.defense, 0);
+        return demange;
+    }
 }
 exports.default = Battle;

@@ -5,13 +5,7 @@ class Persona {
         return this.hp > 0;
     }
     getStatus() {
-        return {
-            _name: this.name,
-            _hp: this.hp,
-            _attack: this.attack,
-            _defense: this.defense,
-            _classType: this.classType,
-        };
+        return `Name: ${this.name}, HP: ${this.hp}, Atk: ${this.attack}, Def: ${this.defense}`;
     }
     get name() {
         return this._name;

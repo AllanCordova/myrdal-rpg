@@ -1,11 +1,3 @@
-interface PersonType {
-  _name: string;
-  _hp: number;
-  _attack: number;
-  _defense: number;
-  _classType: string;
-}
-
 export default class Persona {
   private _name!: string;
   private _hp!: number;
@@ -17,14 +9,8 @@ export default class Persona {
     return this.hp > 0;
   }
 
-  public getStatus(): PersonType {
-    return {
-      _name: this.name,
-      _hp: this.hp,
-      _attack: this.attack,
-      _defense: this.defense,
-      _classType: this.classType,
-    };
+  public getStatus(): string {
+    return `Name: ${this.name}, HP: ${this.hp}, Atk: ${this.attack}, Def: ${this.defense}`;
   }
 
   public get name(): string {
