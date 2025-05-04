@@ -23,13 +23,14 @@ export default class Game {
       case "1":
         this._controllerPerson.startPlayer();
         const player = this._controllerPerson._player;
+        const special = this._controllerPerson.controllerSpecial;
 
         const enemies = this._controllerPerson.startEnemy();
         this._db.enemys = enemies;
 
         for (let i = 0; i < this._db.enemys.length; i++) {
           const enemy = this._db.enemys[i];
-          this._controllerBattle = new ControllerBattle(player, enemy);
+          this._controllerBattle = new ControllerBattle(player, enemy, special);
           this._controllerBattle.startBattle();
           this._controllerBattle.endRound();
           if (!player.isLive()) {

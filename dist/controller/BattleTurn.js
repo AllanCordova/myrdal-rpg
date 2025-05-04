@@ -7,18 +7,22 @@ const ViewMenu_1 = __importDefault(require("../view/ViewMenu"));
 const ViewBattle_1 = __importDefault(require("../view/ViewBattle"));
 const ViewConsole_1 = __importDefault(require("../view/ViewConsole"));
 class BattleTurn {
-    constructor(battle) {
+    constructor(battle, controllerSpecial, viewSpecial) {
         this._battle = battle;
+        this._controllerSpecial = controllerSpecial;
         this._viewConsole = new ViewConsole_1.default();
         this._viewMenu = new ViewMenu_1.default(this._viewConsole);
         this._viewBattle = new ViewBattle_1.default(this._battle, this._viewConsole);
+        this._viewSpecial = viewSpecial;
     }
     gameOver() {
         this._viewBattle.showDefeated();
     }
     battleRound() {
         this._viewBattle.showFighters();
+        this._viewSpecial.showCharge(this._controllerSpecial.getCharge());
         this.playerChoice();
+        this._controllerSpecial.charge();
         if (!this._battle.battleOver()) {
             this.enemyChoice();
         }
@@ -34,6 +38,10 @@ class BattleTurn {
             case "2":
                 this._battle.defendEnemy();
                 this._viewBattle.showDefendPlayer();
+                break;
+            case "3":
+                this._controllerSpecial.atackSpecial(this._battle._player.classType);
+                this._controllerSpecial.reset();
                 break;
             default:
                 this._viewBattle.showDamagePlayer();

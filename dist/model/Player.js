@@ -5,10 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const Persona_1 = __importDefault(require("./Persona"));
 class Player extends Persona_1.default {
+    get super() {
+        return this._super;
+    }
+    set super(value) {
+        this._super = value;
+    }
     startAngel(name) {
         this.name = name;
         this.hp = 300;
         this.attack = 200;
+        this._super = 2;
         this.defense = 120;
         this.classType = "angel";
     }
@@ -16,6 +23,7 @@ class Player extends Persona_1.default {
         this.name = name;
         this.hp = 400;
         this.attack = 130;
+        this._super = 1.8;
         this.defense = 170;
         this.classType = "fighter";
     }
@@ -23,6 +31,7 @@ class Player extends Persona_1.default {
         this.name = name;
         this.hp = 120;
         this.attack = 280;
+        this._super = 400;
         this.defense = 50;
         this.classType = "mage";
     }

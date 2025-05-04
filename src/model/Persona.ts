@@ -10,7 +10,7 @@ export default class Persona {
   }
 
   public getStatus(): string {
-    return `Name: ${this.name}, HP: ${this.hp}, Atk: ${this.attack}, Def: ${this.defense}`;
+    return `Name: ${this.name}, HP: ${this.hp}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}`;
   }
 
   public get name(): string {

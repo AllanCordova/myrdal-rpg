@@ -18,7 +18,7 @@ class ViewMenu {
     }
     battleMenu() {
         this._viewConsole.showBorder();
-        console.log(`Seu turno mestre!\n1.Atacer\n2.Defender`);
+        console.log(`Seu turno mestre!\n1.Atacar\n2.Defender\n3.Special (não tente usar com a barra incompleta)`);
         this._viewConsole.showBorder();
         return readline_sync_1.default.question(chalk_1.default.yellow(`vamos fazer o que essa rodada mestre? ... `));
     }
@@ -26,7 +26,7 @@ class ViewMenu {
         this._viewConsole.showBorder();
         console.log(`Choice class Type:\n1.Angel\n2.Fighter\n3.Mage`);
         this._viewConsole.showBorder();
-        return readline_sync_1.default.question(chalk_1.default.yellow(`qual classe você escolhe? isso diz muito sobre você ... `));
+        return readline_sync_1.default.question(chalk_1.default.yellow(`vamos com o que ... `));
     }
     playerName() {
         console.clear();

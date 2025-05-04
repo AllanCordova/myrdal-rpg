@@ -80,14 +80,17 @@ class ViewBattle {
         const enemyBox = `
   ╔════════════════════════════════════════════╗
   ║ ${chalk_1.default.bold(this._viewConsole.alignText("Enemy", 43))}║
-  ║ Name:   ${chalk_1.default.magenta(this._viewConsole.alignText(enemy.name, 35))}║
-  ║ Class:  ${chalk_1.default.magenta(this._viewConsole.alignText(enemy.classType, 35))}║
-  ║ HP:     ${chalk_1.default.magenta(this._viewConsole.alignText(enemy.hp.toString(), 35))}║
-  ║ DEF:    ${chalk_1.default.magenta(this._viewConsole.alignText(enemy.defense.toString(), 35))}║
+  ║ Name:   ${chalk_1.default.red(this._viewConsole.alignText(enemy.name, 35))}║
+  ║ Class:  ${chalk_1.default.red(this._viewConsole.alignText(enemy.classType, 35))}║
+  ║ HP:     ${chalk_1.default.red(this._viewConsole.alignText(enemy.hp.toString(), 35))}║
+  ║ DEF:    ${chalk_1.default.red(this._viewConsole.alignText(enemy.defense.toString(), 35))}║
   ╚════════════════════════════════════════════╝`;
         console.log(playerBox + "\n" + enemyBox);
         this._viewConsole.showBorder();
         this._viewConsole.isRight();
+    }
+    dontUseSpecial() {
+        console.log(chalk_1.default.red(`ainda não podemos usar isso!!`));
     }
 }
 exports.default = ViewBattle;

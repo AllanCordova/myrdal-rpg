@@ -23,7 +23,9 @@ export default class ViewMenu {
 
   public battleMenu(): string {
     this._viewConsole.showBorder();
-    console.log(`Seu turno mestre!\n1.Atacer\n2.Defender`);
+    console.log(
+      `Seu turno mestre!\n1.Atacar\n2.Defender\n3.Special (não tente usar com a barra incompleta)`
+    );
     this._viewConsole.showBorder();
     return readLineSync.question(
       chalk.yellow(`vamos fazer o que essa rodada mestre? ... `)
@@ -34,9 +36,7 @@ export default class ViewMenu {
     this._viewConsole.showBorder();
     console.log(`Choice class Type:\n1.Angel\n2.Fighter\n3.Mage`);
     this._viewConsole.showBorder();
-    return readLineSync.question(
-      chalk.yellow(`qual classe você escolhe? isso diz muito sobre você ... `)
-    );
+    return readLineSync.question(chalk.yellow(`vamos com o que ... `));
   }
 
   public playerName(): string {

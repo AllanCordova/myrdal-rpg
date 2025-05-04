@@ -148,4 +148,8 @@ export default class ViewBattle {
     this._viewConsole.showBorder();
     this._viewConsole.isRight();
   }
+
+  public dontUseSpecial(): void {
+    console.log(chalk.red(`ainda não podemos usar isso!!`));
+  }
 }

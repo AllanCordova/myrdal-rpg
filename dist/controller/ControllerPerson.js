@@ -7,6 +7,7 @@ const Emey_1 = __importDefault(require("../model/Emey"));
 const Player_1 = __importDefault(require("../model/Player"));
 const ViewConsole_1 = __importDefault(require("../view/ViewConsole"));
 const ViewMenu_1 = __importDefault(require("../view/ViewMenu"));
+const ControllerSpecial_1 = __importDefault(require("./ControllerSpecial"));
 class ControllerPerson {
     constructor() {
         this._player = new Player_1.default();
@@ -22,12 +23,15 @@ class ControllerPerson {
         switch (this._viewMenu.personMenu()) {
             case "1":
                 this._player.startAngel(name);
+                this._controllerSpecial = new ControllerSpecial_1.default(40);
                 break;
             case "2":
                 this._player.startFighter(name);
+                this._controllerSpecial = new ControllerSpecial_1.default(50);
                 break;
             case "3":
                 this._player.startMage(name);
+                this._controllerSpecial = new ControllerSpecial_1.default(30);
                 break;
             default:
                 this._player.startAngel(name);
@@ -48,6 +52,9 @@ class ControllerPerson {
         const vampire = new Emey_1.default();
         vampire.startVampire();
         return [demon, orc, skeleton, dragon, goblin, vampire];
+    }
+    get controllerSpecial() {
+        return this._controllerSpecial;
     }
 }
 exports.default = ControllerPerson;

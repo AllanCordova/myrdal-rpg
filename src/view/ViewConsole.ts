@@ -2,7 +2,7 @@ import readLineSync from "readline-sync";
 
 export default class ViewConsole {
   public showBorder(): void {
-    console.log(`---------------------------`);
+    console.log(`----------------------------------------`);
   }
 
   public isRight(): void {
