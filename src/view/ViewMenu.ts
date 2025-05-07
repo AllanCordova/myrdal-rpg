@@ -1,15 +1,21 @@
 import readLineSync from "readline-sync";
 import ViewConsole from "./ViewConsole";
 import chalk from "chalk";
+import ViewArt from "./ViewArt";
 
 export default class ViewMenu {
-  public constructor(private _viewConsole: ViewConsole) {}
+  public constructor(
+    private _viewConsole: ViewConsole,
+    private _viewArt: ViewArt
+  ) {}
 
   public mainMenu(): string {
     console.clear();
     this._viewConsole.showBorder();
     console.log(
-      `${chalk.bold.cyan(`"The Myrdal Ultimate"`)}${chalk.magenta(
+      `${chalk.bold.cyan(
+        `${this._viewConsole.alignText("", 10)}"The Myrdal Ultimate"`
+      )}\n\n${chalk.red(this._viewArt.menuArt())}\n${chalk.magenta(
         `\n\n1.Iniciar\n2.Sobre\n3.Sair\n`
       )}`
     );
@@ -34,7 +40,9 @@ export default class ViewMenu {
 
   public personMenu(): string {
     this._viewConsole.showBorder();
-    console.log(`Choice class Type:\n1.Angel\n2.Fighter\n3.Mage`);
+    console.log(
+      `Escolha de classe:${chalk.greenBright(`\n1.Anjo\n2.Guerreiro\n3.Mago`)}`
+    );
     this._viewConsole.showBorder();
     return readLineSync.question(chalk.yellow(`vamos com o que ... `));
   }

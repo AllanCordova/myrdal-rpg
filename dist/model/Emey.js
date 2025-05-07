@@ -11,6 +11,7 @@ class Enemy extends Persona_1.default {
     startDemon() {
         this.name = "Diablo";
         this.hp = 180;
+        this.maxHp = this.hp;
         this.attack = 220;
         this.defense = 20;
         this.classType = "devil";
@@ -18,6 +19,7 @@ class Enemy extends Persona_1.default {
     startOrc() {
         this.name = "Gorgrul";
         this.hp = 140;
+        this.maxHp = this.hp;
         this.attack = 100;
         this.defense = 80;
         this.classType = "orc";
@@ -25,6 +27,7 @@ class Enemy extends Persona_1.default {
     startSkeleton() {
         this.name = "Boneclaw";
         this.hp = 70;
+        this.maxHp = this.hp;
         this.attack = 60;
         this.defense = 40;
         this.classType = "undead";
@@ -32,6 +35,7 @@ class Enemy extends Persona_1.default {
     startDragon() {
         this.name = "Vermithrax";
         this.hp = 300;
+        this.maxHp = this.hp;
         this.attack = 250;
         this.defense = 200;
         this.classType = "dragon";
@@ -39,6 +43,7 @@ class Enemy extends Persona_1.default {
     startGoblin() {
         this.name = "Snaggle";
         this.hp = 60;
+        this.maxHp = this.hp;
         this.attack = 40;
         this.defense = 30;
         this.classType = "goblin";
@@ -46,6 +51,7 @@ class Enemy extends Persona_1.default {
     startVampire() {
         this.name = "Nosferatu";
         this.hp = 120;
+        this.maxHp = this.hp;
         this.attack = 150;
         this.defense = 90;
         this.classType = "vampire";

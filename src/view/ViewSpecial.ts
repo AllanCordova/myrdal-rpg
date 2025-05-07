@@ -1,9 +1,14 @@
 import Enemy from "../model/Emey";
 import Player from "../model/Player";
 import chalk from "chalk";
+import ViewArt from "./ViewArt";
 
 export default class ViewSpecial {
-  public constructor(private player: Player, private enemy: Enemy) {}
+  public constructor(
+    private player: Player,
+    private enemy: Enemy,
+    private _viewArt: ViewArt
+  ) {}
 
   public dontUse(): void {
     console.log(
@@ -12,6 +17,7 @@ export default class ViewSpecial {
   }
 
   public showLifeAngel(): void {
+    console.clear();
     console.log(chalk.cyanBright(`\n✨ O anjo invoca uma luz celestial...`));
     console.log(
       chalk.greenBright(
@@ -21,6 +27,7 @@ export default class ViewSpecial {
   }
 
   public showDefenseFighter(): void {
+    console.clear();
     console.log(chalk.yellow(`\n🛡️ O guerreiro entra em posição defensiva...`));
     console.log(
       chalk.magentaBright(`🔒 Sua defesa vale ${this.player.defense}`)
@@ -28,6 +35,9 @@ export default class ViewSpecial {
   }
 
   public showMageAttack(): void {
+    console.clear();
+    console.log(this._viewArt.mageArt());
+    console.log();
     console.log(chalk.blueBright("\n✨ O ar se enche de energia arcana..."));
     console.log(
       chalk.magentaBright(

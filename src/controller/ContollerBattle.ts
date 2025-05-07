@@ -7,6 +7,7 @@ import SpecialAttack from "../model/SpecialAttack";
 import ViewBattle from "../view/ViewBattle";
 import ViewConsole from "../view/ViewConsole";
 import ViewSpecial from "../view/ViewSpecial";
+import ViewArt from "../view/ViewArt";
 
 export default class ControllerBattle {
   private _battleTurn: BattleTurn;
@@ -22,14 +23,15 @@ export default class ControllerBattle {
   public constructor(
     player: Player,
     enemy: Enemy,
-    controllerSpecial: ControllerSpecial
+    controllerSpecial: ControllerSpecial,
+    private _viewArt: ViewArt
   ) {
     this._player = player;
     this._enemy = enemy;
     this._battle = new Battle(this._player, this._enemy);
 
     this._specialAttack = new SpecialAttack(this._battle);
-    this._viewSpecial = new ViewSpecial(this._player, this._enemy);
+    this._viewSpecial = new ViewSpecial(this._player, this._enemy, _viewArt);
 
     this._controllerSpecial = controllerSpecial;
     this._controllerSpecial.injectSpecialAttack(this._specialAttack);
@@ -38,9 +40,10 @@ export default class ControllerBattle {
     this._battleTurn = new BattleTurn(
       this._battle,
       this._controllerSpecial,
-      this._viewSpecial
+      this._viewSpecial,
+      _viewArt
     );
-    this._viewConsole = new ViewConsole();
+    this._viewConsole = new ViewConsole(_viewArt);
     this._viewBattle = new ViewBattle(this._battle, this._viewConsole);
   }
 

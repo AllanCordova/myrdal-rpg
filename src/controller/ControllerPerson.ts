@@ -1,5 +1,6 @@
 import Enemy from "../model/Emey";
 import Player from "../model/Player";
+import ViewArt from "../view/ViewArt";
 import ViewConsole from "../view/ViewConsole";
 import ViewMenu from "../view/ViewMenu";
 import ControllerSpecial from "./ControllerSpecial";
@@ -10,10 +11,10 @@ export default class ControllerPerson {
   private _viewConsole: ViewConsole;
   private _controllerSpecial!: ControllerSpecial;
 
-  public constructor() {
+  public constructor(private _viewArt: ViewArt) {
     this._player = new Player();
-    this._viewConsole = new ViewConsole();
-    this._viewMenu = new ViewMenu(this._viewConsole);
+    this._viewConsole = new ViewConsole(_viewArt);
+    this._viewMenu = new ViewMenu(this._viewConsole, _viewArt);
   }
 
   public startPlayer(): void {
@@ -61,7 +62,7 @@ export default class ControllerPerson {
     const vampire: Enemy = new Enemy();
     vampire.startVampire();
 
-    return [demon, orc, skeleton, dragon, goblin, vampire];
+    return [demon, orc, skeleton, goblin, vampire, dragon];
   }
 
   public get controllerSpecial(): ControllerSpecial {

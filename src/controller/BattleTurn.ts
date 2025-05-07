@@ -5,6 +5,7 @@ import ViewConsole from "../view/ViewConsole";
 import ControllerSpecial from "./ControllerSpecial";
 import SpecialAttack from "../model/SpecialAttack";
 import ViewSpecial from "../view/ViewSpecial";
+import ViewArt from "../view/ViewArt";
 
 export default class BattleTurn {
   private _battle: Battle;
@@ -17,12 +18,13 @@ export default class BattleTurn {
   public constructor(
     battle: Battle,
     controllerSpecial: ControllerSpecial,
-    viewSpecial: ViewSpecial
+    viewSpecial: ViewSpecial,
+    private _viewArt: ViewArt
   ) {
     this._battle = battle;
     this._controllerSpecial = controllerSpecial;
-    this._viewConsole = new ViewConsole();
-    this._viewMenu = new ViewMenu(this._viewConsole);
+    this._viewConsole = new ViewConsole(_viewArt);
+    this._viewMenu = new ViewMenu(this._viewConsole, _viewArt);
     this._viewBattle = new ViewBattle(this._battle, this._viewConsole);
     this._viewSpecial = viewSpecial;
   }

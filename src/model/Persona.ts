@@ -1,6 +1,7 @@
 export default class Persona {
   private _name!: string;
   private _hp!: number;
+  private _maxHp!: number;
   private _attack!: number;
   private _defense!: number;
   private _classType!: string;
@@ -10,7 +11,7 @@ export default class Persona {
   }
 
   public getStatus(): string {
-    return `Name: ${this.name}, HP: ${this.hp}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}`;
+    return `Name: ${this.name}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}`;
   }
 
   public get name(): string {
@@ -27,6 +28,14 @@ export default class Persona {
 
   public set hp(value: number) {
     this._hp = value;
+  }
+
+  public get maxHp(): number {
+    return this._maxHp;
+  }
+
+  public set maxHp(value: number) {
+    this._maxHp = value;
   }
 
   public get attack(): number {

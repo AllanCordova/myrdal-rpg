@@ -14,6 +14,7 @@ class Player extends Persona_1.default {
     startAngel(name) {
         this.name = name;
         this.hp = 300;
+        this.maxHp = this.hp;
         this.attack = 200;
         this._super = 2;
         this.defense = 120;
@@ -22,6 +23,7 @@ class Player extends Persona_1.default {
     startFighter(name) {
         this.name = name;
         this.hp = 400;
+        this.maxHp = this.hp;
         this.attack = 130;
         this._super = 1.8;
         this.defense = 170;
@@ -30,6 +32,7 @@ class Player extends Persona_1.default {
     startMage(name) {
         this.name = name;
         this.hp = 120;
+        this.maxHp = this.hp;
         this.attack = 280;
         this._super = 400;
         this.defense = 50;

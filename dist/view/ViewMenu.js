@@ -6,13 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const readline_sync_1 = __importDefault(require("readline-sync"));
 const chalk_1 = __importDefault(require("chalk"));
 class ViewMenu {
-    constructor(_viewConsole) {
+    constructor(_viewConsole, _viewArt) {
         this._viewConsole = _viewConsole;
+        this._viewArt = _viewArt;
     }
     mainMenu() {
         console.clear();
         this._viewConsole.showBorder();
-        console.log(`${chalk_1.default.bold.cyan(`"The Myrdal Ultimate"`)}${chalk_1.default.magenta(`\n\n1.Iniciar\n2.Sobre\n3.Sair\n`)}`);
+        console.log(`${chalk_1.default.bold.cyan(`${this._viewConsole.alignText("", 10)}"The Myrdal Ultimate"`)}\n\n${chalk_1.default.red(this._viewArt.menuArt())}\n${chalk_1.default.magenta(`\n\n1.Iniciar\n2.Sobre\n3.Sair\n`)}`);
         this._viewConsole.showBorder();
         return readline_sync_1.default.question(chalk_1.default.yellow("se quiser jogar so apertar 1 (por favor faça isso mestre) ... "));
     }
@@ -24,7 +25,7 @@ class ViewMenu {
     }
     personMenu() {
         this._viewConsole.showBorder();
-        console.log(`Choice class Type:\n1.Angel\n2.Fighter\n3.Mage`);
+        console.log(`Escolha de classe:${chalk_1.default.greenBright(`\n1.Anjo\n2.Guerreiro\n3.Mago`)}`);
         this._viewConsole.showBorder();
         return readline_sync_1.default.question(chalk_1.default.yellow(`vamos com o que ... `));
     }

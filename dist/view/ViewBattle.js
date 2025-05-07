@@ -10,87 +10,103 @@ class ViewBattle {
         this._viewConsole = _viewConsole;
     }
     showVictory() {
-        console.log(chalk_1.default.green(`🎉🎉🎉 parece que você acabou com todo mundo, parabéns ${this._battle._player.name}!! 🎉🎉`));
+        console.clear();
+        this._viewConsole.showBorder();
+        console.log(chalk_1.default.bgGreen.black.bold(`\n✨ Vitória Gloriosa! ${this._battle._player.name} derrotou todos os inimigos e salvou o reino! ✨\n`));
+        this._viewConsole.showBorder();
     }
     showPlayerWin() {
         this._viewConsole.showBorder();
-        console.log(chalk_1.default.greenBright(`🎉 ${this._battle._player.name} venceu com honra (ou quase)! Parabéns, guerreiro! 🏆`));
+        console.log(chalk_1.default.greenBright(`🏅 ${this._battle._player.name} triunfou sobre o inimigo! A justiça prevaleceu!`));
         this._viewConsole.showBorder();
         this._viewConsole.nextRound();
     }
     showEnemyWin() {
         this._viewConsole.showBorder();
-        console.log(chalk_1.default.redBright(`💀 ${this._battle._enemy.name} levou a melhor! Parece que o herói tropeçou na própria espada...`));
+        console.log(chalk_1.default.redBright(`☠️ ${this._battle._enemy.name} venceu essa batalha... Mas a guerra ainda não acabou!`));
         this._viewConsole.showBorder();
         this._viewConsole.nextRound();
     }
     showDefeated() {
         console.clear();
         this._viewConsole.showBorder();
-        console.log(chalk_1.default.red(`Gostei de você ${this._battle._player.name} foi bom enquanto durou!`));
+        console.log(chalk_1.default.redBright.bold(`😔 ${this._battle._player.name} foi derrotado... Mas os heróis sempre têm uma segunda chance!`));
         this._viewConsole.showBorder();
     }
     showFighters() {
+        const title = chalk_1.default.cyanBright.bold("⚔️ Início do Combate ⚔️");
+        const art = this._viewConsole.showArt();
+        const battleStatus = `${chalk_1.default.green(`${this._battle._player.getStatus()}, hp: ${this.generateHpBar(this._battle._player.hp, this._battle._player.maxHp, 8)}`)}\n\n${chalk_1.default.red(`${this._battle._enemy.getStatus()}, hp: ${this.generateHpBar(this._battle._enemy.hp, this._battle._enemy.maxHp, 8)}`)}`;
         console.clear();
         this._viewConsole.showBorder();
-        console.log(chalk_1.default.cyanBright.bold("Fighters") +
-            "\n" +
-            chalk_1.default.green(this._battle._player.getStatus()) +
-            "\n" +
-            chalk_1.default.red(this._battle._enemy.getStatus()));
+        console.log(title.padStart(45, " "));
+        console.log(art);
+        this._viewConsole.showBorder();
+        console.log(battleStatus);
         this._viewConsole.showBorder();
     }
+    generateHpBar(current, max, barLength = 20) {
+        const filledLength = Math.round((current / max) * barLength);
+        const emptyLength = barLength - filledLength;
+        const filledBar = "█".repeat(filledLength);
+        const emptyBar = "░".repeat(emptyLength);
+        return `HP: ${current}/${max}${filledBar}${emptyBar}`;
+    }
     showDamagePlayer() {
-        console.log(`${chalk_1.default.greenBright(this._battle._player.name)} atacou com vontade e causou ` +
+        console.clear();
+        console.log(`${chalk_1.default.greenBright(this._battle._player.name)} desferiu um golpe heroico causando ` +
             chalk_1.default.redBright.bold(`${this._battle.getPlayerDamage()} de dano`) +
-            ` em ${chalk_1.default.yellowBright(this._battle._enemy.name)}! `);
+            ` em ${chalk_1.default.yellowBright(this._battle._enemy.name)}! 💥`);
     }
     showDamageEnemy() {
-        console.log(`${chalk_1.default.yellowBright(this._battle._enemy.name)} revidou com tudo e causou ` +
+        console.log(`${chalk_1.default.yellowBright(this._battle._enemy.name)} lançou um contra-ataque brutal causando ` +
             chalk_1.default.redBright.bold(`${this._battle.getEnemyDamage()} de dano`) +
-            ` em ${chalk_1.default.greenBright(this._battle._player.name)}! `);
+            ` em ${chalk_1.default.greenBright(this._battle._player.name)}! 😱`);
     }
     defenseEnemy() {
-        console.log(`Agora o escudo do coitado tá em ${chalk_1.default.cyanBright(this._battle._enemy.defense)} pontos. 🛡️`);
+        console.log(`${chalk_1.default.yellow(this._battle._enemy.name)} levantou seu escudo! Defesa atual: ` +
+            chalk_1.default.cyanBright(`${this._battle._enemy.defense} 🛡️`));
     }
     defensePlayer() {
-        console.log(`O escudo dele sobreviveu com ${chalk_1.default.cyanBright(this._battle._player.defense)} pontos. 🛡️`);
+        console.clear();
+        console.log(`${chalk_1.default.green(this._battle._player.name)} resiste bravamente! Defesa atual: ` +
+            chalk_1.default.cyanBright(`${this._battle._player.defense} 🛡️`));
     }
     showDefendPlayer() {
-        console.log(`${chalk_1.default.green(this._battle._player.name)} se precaveu e aumentou sua defesa para ` +
-            `${chalk_1.default.cyan(this._battle.playerDefend)} pontos! 🛡️`);
+        console.log(`${chalk_1.default.green(this._battle._player.name)} entrou em posição defensiva. Defesa elevada para ` +
+            chalk_1.default.cyan(`${this._battle.playerDefend} 🛡️`));
     }
     showDefendEnemy() {
-        console.log(`${chalk_1.default.yellow(this._battle._enemy.name)} entrou na defensiva, aumentando sua defesa para ` +
-            `${chalk_1.default.cyan(this._battle.enemyDefend)} pontos! 🛡️`);
+        console.log(`${chalk_1.default.yellow(this._battle._enemy.name)} recuou e protegeu-se. Defesa aumentada para ` +
+            chalk_1.default.cyan(`${this._battle.enemyDefend} 🛡️`));
     }
     battleStatus() {
         this._viewConsole.showBorder();
-        console.log(`\n${chalk_1.default.magentaBright.bold("🛡️  Battle Status")}\n`);
+        console.log(`\n${chalk_1.default.magentaBright.bold("📊 Status da Batalha")}\n`);
         const player = this._battle._player;
         const enemy = this._battle._enemy;
         const playerBox = `
-  ╔════════════════════════════════════════════╗
-  ║ ${chalk_1.default.bold(this._viewConsole.alignText("Player", 43))}║
-  ║ Name:   ${chalk_1.default.green(this._viewConsole.alignText(player.name, 35))}║
-  ║ Class:  ${chalk_1.default.green(this._viewConsole.alignText(player.classType, 35))}║
-  ║ HP:     ${chalk_1.default.green(this._viewConsole.alignText(player.hp.toString(), 35))}║
-  ║ DEF:    ${chalk_1.default.green(this._viewConsole.alignText(player.defense.toString(), 35))}║
-  ╚════════════════════════════════════════════╝`;
+╔════════════════════════════════════════════╗
+║ ${chalk_1.default.bold(this._viewConsole.alignText("🧙 Jogador", 43))}║
+║ Nome:   ${chalk_1.default.green(this._viewConsole.alignText(player.name, 35))}║
+║ Classe: ${chalk_1.default.green(this._viewConsole.alignText(player.classType, 35))}║
+║ HP:     ${chalk_1.default.green(this._viewConsole.alignText(this.generateHpBar(this._battle._player.hp, this._battle._player.maxHp), 35))}║
+║ DEF:    ${chalk_1.default.green(this._viewConsole.alignText(player.defense.toString(), 35))}║
+╚════════════════════════════════════════════╝`;
         const enemyBox = `
-  ╔════════════════════════════════════════════╗
-  ║ ${chalk_1.default.bold(this._viewConsole.alignText("Enemy", 43))}║
-  ║ Name:   ${chalk_1.default.red(this._viewConsole.alignText(enemy.name, 35))}║
-  ║ Class:  ${chalk_1.default.red(this._viewConsole.alignText(enemy.classType, 35))}║
-  ║ HP:     ${chalk_1.default.red(this._viewConsole.alignText(enemy.hp.toString(), 35))}║
-  ║ DEF:    ${chalk_1.default.red(this._viewConsole.alignText(enemy.defense.toString(), 35))}║
-  ╚════════════════════════════════════════════╝`;
+╔════════════════════════════════════════════╗
+║ ${chalk_1.default.bold(this._viewConsole.alignText("👹 Inimigo", 43))}║
+║ Nome:   ${chalk_1.default.red(this._viewConsole.alignText(enemy.name, 35))}║
+║ Classe: ${chalk_1.default.red(this._viewConsole.alignText(enemy.classType, 35))}║
+║ HP:     ${chalk_1.default.red(this._viewConsole.alignText(this.generateHpBar(this._battle._enemy.hp, this._battle._enemy.maxHp), 35))}║
+║ DEF:    ${chalk_1.default.red(this._viewConsole.alignText(enemy.defense.toString(), 35))}║
+╚════════════════════════════════════════════╝`;
         console.log(playerBox + "\n" + enemyBox);
         this._viewConsole.showBorder();
         this._viewConsole.isRight();
     }
     dontUseSpecial() {
-        console.log(chalk_1.default.red(`ainda não podemos usar isso!!`));
+        console.log(chalk_1.default.red.bold(`🚫 Você ainda não pode usar sua habilidade especial! Espere o momento certo...`));
     }
 }
 exports.default = ViewBattle;

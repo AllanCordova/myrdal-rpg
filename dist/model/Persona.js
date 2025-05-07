@@ -5,7 +5,7 @@ class Persona {
         return this.hp > 0;
     }
     getStatus() {
-        return `Name: ${this.name}, HP: ${this.hp}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}`;
+        return `Name: ${this.name}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}`;
     }
     get name() {
         return this._name;
@@ -18,6 +18,12 @@ class Persona {
     }
     set hp(value) {
         this._hp = value;
+    }
+    get maxHp() {
+        return this._maxHp;
+    }
+    set maxHp(value) {
+        this._maxHp = value;
     }
     get attack() {
         return this._attack;

@@ -9,10 +9,11 @@ const ViewConsole_1 = __importDefault(require("../view/ViewConsole"));
 const ViewMenu_1 = __importDefault(require("../view/ViewMenu"));
 const ControllerSpecial_1 = __importDefault(require("./ControllerSpecial"));
 class ControllerPerson {
-    constructor() {
+    constructor(_viewArt) {
+        this._viewArt = _viewArt;
         this._player = new Player_1.default();
-        this._viewConsole = new ViewConsole_1.default();
-        this._viewMenu = new ViewMenu_1.default(this._viewConsole);
+        this._viewConsole = new ViewConsole_1.default(_viewArt);
+        this._viewMenu = new ViewMenu_1.default(this._viewConsole, _viewArt);
     }
     startPlayer() {
         const name = this._viewMenu.playerName();
@@ -51,7 +52,7 @@ class ControllerPerson {
         goblin.startGoblin();
         const vampire = new Emey_1.default();
         vampire.startVampire();
-        return [demon, orc, skeleton, dragon, goblin, vampire];
+        return [demon, orc, skeleton, goblin, vampire, dragon];
     }
     get controllerSpecial() {
         return this._controllerSpecial;

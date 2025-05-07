@@ -3,18 +3,21 @@ import ControllerPerson from "./ControllerPerson";
 import ControllerBattle from "./ContollerBattle";
 import Db from "../data/Db";
 import ViewConsole from "../view/ViewConsole";
+import ViewArt from "../view/ViewArt";
 
 export default class Game {
   private _viewMenu: ViewMenu;
   private _controllerPerson: ControllerPerson;
   private _controllerBattle!: ControllerBattle;
   private _viewConsole: ViewConsole;
+  private _viewArt: ViewArt;
   private _db: Db;
 
   public constructor() {
-    this._viewConsole = new ViewConsole();
-    this._viewMenu = new ViewMenu(this._viewConsole);
-    this._controllerPerson = new ControllerPerson();
+    this._viewArt = new ViewArt();
+    this._viewConsole = new ViewConsole(this._viewArt);
+    this._viewMenu = new ViewMenu(this._viewConsole, this._viewArt);
+    this._controllerPerson = new ControllerPerson(this._viewArt);
     this._db = new Db();
   }
 
@@ -30,7 +33,12 @@ export default class Game {
 
         for (let i = 0; i < this._db.enemys.length; i++) {
           const enemy = this._db.enemys[i];
-          this._controllerBattle = new ControllerBattle(player, enemy, special);
+          this._controllerBattle = new ControllerBattle(
+            player,
+            enemy,
+            special,
+            this._viewArt
+          );
           this._controllerBattle.startBattle();
           this._controllerBattle.endRound();
           if (!player.isLive()) {
