@@ -4,6 +4,7 @@ import ControllerBattle from "./ContollerBattle";
 import Db from "../data/Db";
 import ViewConsole from "../view/ViewConsole";
 import ViewArt from "../view/ViewArt";
+import { GameState } from "../enum/GameState";
 
 export default class Game {
   private _viewMenu: ViewMenu;
@@ -23,7 +24,7 @@ export default class Game {
 
   public startGame(): void {
     switch (this._viewMenu.mainMenu()) {
-      case "1":
+      case GameState.Start:
         this._controllerPerson.startPlayer();
         const player = this._controllerPerson._player;
         const special = this._controllerPerson.controllerSpecial;
@@ -47,9 +48,11 @@ export default class Game {
           }
         }
         break;
-      case "2":
+      case GameState.About:
+        this._viewMenu.showAbout();
         break;
-      case "3":
+      case GameState.Exit:
+        this._viewMenu.showClosedGame();
         break;
       default:
         this._viewMenu.fluxValid();

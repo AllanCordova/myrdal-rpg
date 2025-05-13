@@ -27,6 +27,20 @@ export default class ViewMenu {
     );
   }
 
+  public showAbout(): void {
+    console.log(
+      chalk.magenta(
+        `Este jogo foi desenvolvido no 3 período de SI, orientado a objetos, este projeto e escalavel e tem uma arquitetura robusta`
+      )
+    );
+  }
+
+  public showClosedGame(): void {
+    console.log(
+      chalk.red(`Obrigado por participar desse projeto! volte sempre.`)
+    );
+  }
+
   public battleMenu(): string {
     this._viewConsole.showBorder();
     console.log(

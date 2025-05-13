@@ -1,4 +1,5 @@
 import Persona from "./Persona";
+import { PlayerClass } from "../enum/ClassType";
 
 export default class Player extends Persona {
   private _super!: number;
@@ -18,7 +19,7 @@ export default class Player extends Persona {
     this.attack = 200;
     this._super = 2;
     this.defense = 120;
-    this.classType = "angel";
+    this.classType = PlayerClass.Angel;
   }
 
   public startFighter(name: string): void {
@@ -28,7 +29,7 @@ export default class Player extends Persona {
     this.attack = 130;
     this._super = 1.8;
     this.defense = 170;
-    this.classType = "fighter";
+    this.classType = PlayerClass.Fighter;
   }
 
   public startMage(name: string): void {
@@ -38,6 +39,6 @@ export default class Player extends Persona {
     this.attack = 280;
     this._super = 400;
     this.defense = 50;
-    this.classType = "mage";
+    this.classType = PlayerClass.Mage;
   }
 }

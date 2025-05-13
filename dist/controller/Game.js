@@ -9,6 +9,7 @@ const ContollerBattle_1 = __importDefault(require("./ContollerBattle"));
 const Db_1 = __importDefault(require("../data/Db"));
 const ViewConsole_1 = __importDefault(require("../view/ViewConsole"));
 const ViewArt_1 = __importDefault(require("../view/ViewArt"));
+const GameState_1 = require("../enum/GameState");
 class Game {
     constructor() {
         this._viewArt = new ViewArt_1.default();
@@ -19,7 +20,7 @@ class Game {
     }
     startGame() {
         switch (this._viewMenu.mainMenu()) {
-            case "1":
+            case GameState_1.GameState.Start:
                 this._controllerPerson.startPlayer();
                 const player = this._controllerPerson._player;
                 const special = this._controllerPerson.controllerSpecial;
@@ -36,9 +37,11 @@ class Game {
                     }
                 }
                 break;
-            case "2":
+            case GameState_1.GameState.About:
+                this._viewMenu.showAbout();
                 break;
-            case "3":
+            case GameState_1.GameState.Exit:
+                this._viewMenu.showClosedGame();
                 break;
             default:
                 this._viewMenu.fluxValid();

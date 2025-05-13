@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ViewMenu_1 = __importDefault(require("../view/ViewMenu"));
 const ViewBattle_1 = __importDefault(require("../view/ViewBattle"));
 const ViewConsole_1 = __importDefault(require("../view/ViewConsole"));
+const BattleState_1 = require("../enum/BattleState");
 class BattleTurn {
     constructor(battle, controllerSpecial, viewSpecial, _viewArt) {
         this._viewArt = _viewArt;
@@ -31,23 +32,18 @@ class BattleTurn {
     }
     playerChoice() {
         switch (this._viewMenu.battleMenu()) {
-            case "1":
-                this._viewBattle.showDamagePlayer();
-                this._battle.attackEnemy();
-                this._viewBattle.defenseEnemy();
+            case BattleState_1.BattleState.attack:
+                this.playerChoiceAttack();
                 break;
-            case "2":
-                this._battle.defendEnemy();
-                this._viewBattle.showDefendPlayer();
+            case BattleState_1.BattleState.defend:
+                this.playerChoideDefend();
                 break;
-            case "3":
+            case BattleState_1.BattleState.atackSpecial:
                 this._controllerSpecial.atackSpecial(this._battle._player.classType);
                 this._controllerSpecial.reset();
                 break;
             default:
-                this._viewBattle.showDamagePlayer();
-                this._battle.attackEnemy();
-                this._viewBattle.defenseEnemy();
+                this.playerChoiceAttack();
         }
     }
     enemyChoice() {
@@ -55,15 +51,30 @@ class BattleTurn {
         const index = Math.floor(Math.random() * options.length);
         switch (options[index]) {
             case "attack":
-                this._viewBattle.showDamageEnemy();
-                this._battle.attackPlayer();
-                this._viewBattle.defensePlayer();
+                this.enemyChoiceAttack();
                 break;
             case "defend":
-                this._battle.defendPlayer();
-                this._viewBattle.showDefendEnemy();
+                this.enemyChoiceDefend();
                 break;
         }
+    }
+    playerChoiceAttack() {
+        this._viewBattle.showDamagePlayer();
+        this._battle.attackEnemy();
+        this._viewBattle.defenseEnemy();
+    }
+    playerChoideDefend() {
+        this._battle.defendEnemy();
+        this._viewBattle.showDefendPlayer();
+    }
+    enemyChoiceAttack() {
+        this._viewBattle.showDamageEnemy();
+        this._battle.attackPlayer();
+        this._viewBattle.defensePlayer();
+    }
+    enemyChoiceDefend() {
+        this._battle.defendPlayer();
+        this._viewBattle.showDefendEnemy();
     }
 }
 exports.default = BattleTurn;

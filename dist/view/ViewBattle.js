@@ -35,7 +35,7 @@ class ViewBattle {
     }
     showFighters() {
         const title = chalk_1.default.cyanBright.bold("⚔️ Início do Combate ⚔️");
-        const names = `${this._viewConsole.alignText(`${chalk_1.default.green(this._battle._player.name)}`, 50)} ${chalk_1.default.red(this._battle._enemy.name)}`;
+        const names = `${this._viewConsole.alignText(`${chalk_1.default.bgBlue(this._battle._player.name)}`, 50)} ${chalk_1.default.red(this._battle._enemy.name)}`;
         const art = this._viewConsole.showArt();
         const battleStatus = `${chalk_1.default.green(`${this._battle._player.getStatus()}, hp: ${this.generateHpBar(this._battle._player.hp, this._battle._player.maxHp, 8)}`)}\n\n${chalk_1.default.red(`${this._battle._enemy.getStatus()}, hp: ${this.generateHpBar(this._battle._enemy.hp, this._battle._enemy.maxHp, 8)}`)}`;
         console.clear();

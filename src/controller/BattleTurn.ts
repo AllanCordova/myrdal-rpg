@@ -3,9 +3,9 @@ import ViewMenu from "../view/ViewMenu";
 import ViewBattle from "../view/ViewBattle";
 import ViewConsole from "../view/ViewConsole";
 import ControllerSpecial from "./ControllerSpecial";
-import SpecialAttack from "../model/SpecialAttack";
 import ViewSpecial from "../view/ViewSpecial";
 import ViewArt from "../view/ViewArt";
+import { BattleState } from "../enum/BattleState";
 
 export default class BattleTurn {
   private _battle: Battle;
@@ -44,41 +44,55 @@ export default class BattleTurn {
     this._viewBattle.battleStatus();
   }
 
-  public playerChoice(): void {
+  private playerChoice(): void {
     switch (this._viewMenu.battleMenu()) {
-      case "1":
-        this._viewBattle.showDamagePlayer();
-        this._battle.attackEnemy();
-        this._viewBattle.defenseEnemy();
+      case BattleState.attack:
+        this.playerChoiceAttack();
         break;
-      case "2":
-        this._battle.defendEnemy();
-        this._viewBattle.showDefendPlayer();
+      case BattleState.defend:
+        this.playerChoideDefend();
         break;
-      case "3":
+      case BattleState.atackSpecial:
         this._controllerSpecial.atackSpecial(this._battle._player.classType);
         this._controllerSpecial.reset();
         break;
       default:
-        this._viewBattle.showDamagePlayer();
-        this._battle.attackEnemy();
-        this._viewBattle.defenseEnemy();
+        this.playerChoiceAttack();
     }
   }
 
-  public enemyChoice(): void {
+  private enemyChoice(): void {
     const options: Array<string> = ["attack", "defend"];
     const index: number = Math.floor(Math.random() * options.length);
     switch (options[index]) {
       case "attack":
-        this._viewBattle.showDamageEnemy();
-        this._battle.attackPlayer();
-        this._viewBattle.defensePlayer();
+        this.enemyChoiceAttack();
         break;
       case "defend":
-        this._battle.defendPlayer();
-        this._viewBattle.showDefendEnemy();
+        this.enemyChoiceDefend();
         break;
     }
+  }
+
+  private playerChoiceAttack(): void {
+    this._viewBattle.showDamagePlayer();
+    this._battle.attackEnemy();
+    this._viewBattle.defenseEnemy();
+  }
+
+  private playerChoideDefend(): void {
+    this._battle.defendEnemy();
+    this._viewBattle.showDefendPlayer();
+  }
+
+  private enemyChoiceAttack(): void {
+    this._viewBattle.showDamageEnemy();
+    this._battle.attackPlayer();
+    this._viewBattle.defensePlayer();
+  }
+
+  private enemyChoiceDefend(): void {
+    this._battle.defendPlayer();
+    this._viewBattle.showDefendEnemy();
   }
 }

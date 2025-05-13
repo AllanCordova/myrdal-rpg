@@ -17,6 +17,12 @@ class ViewMenu {
         this._viewConsole.showBorder();
         return readline_sync_1.default.question(chalk_1.default.yellow("se quiser jogar so apertar 1 (por favor faça isso mestre) ... "));
     }
+    showAbout() {
+        console.log(chalk_1.default.magenta(`Este jogo foi desenvolvido no 3 período de SI, orientado a objetos, este projeto e escalavel e tem uma arquitetura robusta`));
+    }
+    showClosedGame() {
+        console.log(chalk_1.default.red(`Obrigado por participar desse projeto! volte sempre.`));
+    }
     battleMenu() {
         this._viewConsole.showBorder();
         console.log(`Seu turno mestre!\n1.Atacar\n2.Defender\n3.Special (não tente usar com a barra incompleta)`);
