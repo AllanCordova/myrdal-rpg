@@ -51,6 +51,10 @@ export default class ViewBattle {
 
   public showFighters(): void {
     const title = chalk.cyanBright.bold("⚔️ Início do Combate ⚔️");
+    const names: string = `${this._viewConsole.alignText(
+      `${chalk.bgBlue(this._battle._player.name)}`,
+      50
+    )} ${chalk.red(this._battle._enemy.name)}`;
     const art = this._viewConsole.showArt();
     const battleStatus = `${chalk.green(
       `${this._battle._player.getStatus()}, hp: ${this.generateHpBar(
@@ -69,15 +73,16 @@ export default class ViewBattle {
     console.clear();
     this._viewConsole.showBorder();
     console.log(title.padStart(45, " "));
+    console.log(names);
     console.log(art);
     this._viewConsole.showBorder();
     console.log(battleStatus);
     this._viewConsole.showBorder();
   }
 
-  private generateHpBar(current: number, max: number, barLength = 20): string {
+  private generateHpBar(current: number, max: number, barLength = 10): string {
     const filledLength = Math.round((current / max) * barLength);
-    const emptyLength = barLength - filledLength;
+    const emptyLength = Math.max(barLength - filledLength, 0);
 
     const filledBar = "█".repeat(filledLength);
     const emptyBar = "░".repeat(emptyLength);
@@ -116,7 +121,6 @@ export default class ViewBattle {
   }
 
   public defensePlayer(): void {
-    console.clear();
     console.log(
       `${chalk.green(
         this._battle._player.name

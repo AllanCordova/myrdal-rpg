@@ -63,10 +63,6 @@ class BattleTurn {
                 this._battle.defendPlayer();
                 this._viewBattle.showDefendEnemy();
                 break;
-            default:
-                this._viewBattle.showDamageEnemy();
-                this._battle.attackPlayer();
-                this._viewBattle.defensePlayer();
         }
     }
 }

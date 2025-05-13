@@ -49,11 +49,14 @@ export default class Battle {
   }
 
   public defendEnemy(): void {
-    this._player.defense = Math.floor(this._player.defense * 1.3);
+    this._player.defense = Math.min(
+      Math.floor(this._player.defense * 1.3),
+      500
+    );
   }
 
   public defendPlayer(): void {
-    this._enemy.defense = Math.floor(this._enemy.defense * 1.3);
+    this._enemy.defense = Math.min(Math.floor(this._enemy.defense * 1.3), 500);
   }
 
   public getPlayerDamage(): number {

@@ -9,7 +9,10 @@ export default class SpecialAttack {
 
   public fighterDefense(): void {
     if (this._battle._player.defense >= 170) {
-      this._battle._player.defense *= this._battle._player.super;
+      this._battle._player.defense = Math.min(
+        this._battle._player.defense * this._battle._player.super,
+        500
+      );
     } else {
       this._battle._player.defense = 170 * this._battle._player.super;
     }

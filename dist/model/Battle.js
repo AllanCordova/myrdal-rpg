@@ -28,10 +28,10 @@ class Battle {
         this._player.hp = Math.max(this._player.hp - demange, 0);
     }
     defendEnemy() {
-        this._player.defense = Math.floor(this._player.defense * 1.3);
+        this._player.defense = Math.min(Math.floor(this._player.defense * 1.3), 500);
     }
     defendPlayer() {
-        this._enemy.defense = Math.floor(this._enemy.defense * 1.3);
+        this._enemy.defense = Math.min(Math.floor(this._enemy.defense * 1.3), 500);
     }
     getPlayerDamage() {
         const damage = Math.max(this._player.attack - this._enemy.defense, 0);
