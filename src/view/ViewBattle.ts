@@ -7,46 +7,34 @@ export default class ViewBattle {
 
   public showVictory(): void {
     console.clear();
-    this._viewConsole.showBorder();
-    console.log(
-      chalk.bgGreen.black.bold(
-        `\n✨ Vitória Gloriosa! ${this._battle._player.name} derrotou todos os inimigos e salvou o reino! ✨\n`
-      )
+    const text: string = chalk.bgGreen.black.bold(
+      `\n✨ Vitória Gloriosa! ${this._battle._player.name} derrotou todos os inimigos e salvou o reino! ✨\n`
     );
-    this._viewConsole.showBorder();
+    this._viewConsole.showBorder(text);
   }
 
   public showPlayerWin(): void {
-    this._viewConsole.showBorder();
-    console.log(
-      chalk.greenBright(
-        `🏅 ${this._battle._player.name} triunfou sobre o inimigo! A justiça prevaleceu!`
-      )
+    const text: string = chalk.greenBright(
+      `🏅 ${this._battle._player.name} triunfou sobre o inimigo! A justiça prevaleceu!`
     );
-    this._viewConsole.showBorder();
+    this._viewConsole.showBorder(text);
     this._viewConsole.nextRound();
   }
 
   public showEnemyWin(): void {
-    this._viewConsole.showBorder();
-    console.log(
-      chalk.redBright(
-        `☠️ ${this._battle._enemy.name} venceu essa batalha... Mas a guerra ainda não acabou!`
-      )
+    const text: string = chalk.redBright(
+      `☠️ ${this._battle._enemy.name} venceu essa batalha... Mas a guerra ainda não acabou!`
     );
-    this._viewConsole.showBorder();
+    this._viewConsole.showBorder(text);
     this._viewConsole.nextRound();
   }
 
   public showDefeated(): void {
     console.clear();
-    this._viewConsole.showBorder();
-    console.log(
-      chalk.redBright.bold(
-        `😔 ${this._battle._player.name} foi derrotado... Mas os heróis sempre têm uma segunda chance!`
-      )
+    const text: string = chalk.redBright.bold(
+      `😔 ${this._battle._player.name} foi derrotado... Mas os heróis sempre têm uma segunda chance!`
     );
-    this._viewConsole.showBorder();
+    this._viewConsole.showBorder(text);
   }
 
   public showFighters(): void {
@@ -54,7 +42,7 @@ export default class ViewBattle {
     const names: string = `${this._viewConsole.alignText(
       `${chalk.bgBlue(this._battle._player.name)}`,
       50
-    )} ${chalk.red(this._battle._enemy.name)}`;
+    )} ${chalk.bgRed(this._battle._enemy.name)}`;
     const art = this._viewConsole.showArt();
     const battleStatus = `${chalk.green(
       `${this._battle._player.getStatus()}, hp: ${this.generateHpBar(
@@ -71,23 +59,35 @@ export default class ViewBattle {
     )}`;
 
     console.clear();
-    this._viewConsole.showBorder();
-    console.log(title.padStart(45, " "));
+    this._viewConsole.showBorder(title.padStart(45, ""));
     console.log(names);
-    console.log(art);
-    this._viewConsole.showBorder();
-    console.log(battleStatus);
-    this._viewConsole.showBorder();
+    this._viewConsole.showBorder(art);
+    this._viewConsole.showBorder(battleStatus);
   }
 
-  private generateHpBar(current: number, max: number, barLength = 10): string {
-    const filledLength = Math.round((current / max) * barLength);
-    const emptyLength = Math.max(barLength - filledLength, 0);
+  private generateHpBar(current: number, max: number, barLength = 20): string {
+    const percentage = current / max;
+    const limitedPercentage = Math.min(percentage, 1);
+    const filledLength = Math.round(limitedPercentage * barLength);
+    const emptyLength = barLength - filledLength;
 
-    const filledBar = "█".repeat(filledLength);
-    const emptyBar = "░".repeat(emptyLength);
+    const filledBarChar = "█";
+    const emptyBarChar = "░";
 
-    return `HP: ${current}/${max}${filledBar}${emptyBar}`;
+    let colorFn = chalk.green;
+
+    if (current > max) {
+      colorFn = chalk.cyan;
+    } else if (percentage < 0.3) {
+      colorFn = chalk.red;
+    } else if (percentage < 0.6) {
+      colorFn = chalk.yellow;
+    }
+
+    const filledBar = colorFn(filledBarChar.repeat(filledLength));
+    const emptyBar = emptyBarChar.repeat(emptyLength);
+
+    return `${current}/${max}  ${filledBar}${emptyBar}`;
   }
 
   public showDamagePlayer(): void {
@@ -148,7 +148,6 @@ export default class ViewBattle {
   }
 
   public battleStatus(): void {
-    this._viewConsole.showBorder();
     console.log(`\n${chalk.magentaBright.bold("📊 Status da Batalha")}\n`);
 
     const player = this._battle._player;
@@ -159,11 +158,9 @@ export default class ViewBattle {
 ║ ${chalk.bold(this._viewConsole.alignText("🧙 Jogador", 43))}║
 ║ Nome:   ${chalk.green(this._viewConsole.alignText(player.name, 35))}║
 ║ Classe: ${chalk.green(this._viewConsole.alignText(player.classType, 35))}║
-║ HP:     ${chalk.green(
-      this._viewConsole.alignText(
-        this.generateHpBar(this._battle._player.hp, this._battle._player.maxHp),
-        35
-      )
+║ HP:     ${this._viewConsole.alignText(
+      this.generateHpBar(this._battle._player.hp, this._battle._player.maxHp),
+      35
     )}║
 ║ DEF:    ${chalk.green(
       this._viewConsole.alignText(player.defense.toString(), 35)
@@ -175,19 +172,16 @@ export default class ViewBattle {
 ║ ${chalk.bold(this._viewConsole.alignText("👹 Inimigo", 43))}║
 ║ Nome:   ${chalk.red(this._viewConsole.alignText(enemy.name, 35))}║
 ║ Classe: ${chalk.red(this._viewConsole.alignText(enemy.classType, 35))}║
-║ HP:     ${chalk.red(
-      this._viewConsole.alignText(
-        this.generateHpBar(this._battle._enemy.hp, this._battle._enemy.maxHp),
-        35
-      )
+║ HP:     ${this._viewConsole.alignText(
+      this.generateHpBar(this._battle._enemy.hp, this._battle._enemy.maxHp),
+      35
     )}║
 ║ DEF:    ${chalk.red(
       this._viewConsole.alignText(enemy.defense.toString(), 35)
     )}║
 ╚════════════════════════════════════════════╝`;
 
-    console.log(playerBox + "\n" + enemyBox);
-    this._viewConsole.showBorder();
+    this._viewConsole.showBorder(playerBox + "\n" + enemyBox);
     this._viewConsole.isRight();
   }
 

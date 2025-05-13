@@ -19,12 +19,12 @@ export default class BattleTurn {
     battle: Battle,
     controllerSpecial: ControllerSpecial,
     viewSpecial: ViewSpecial,
-    private _viewArt: ViewArt
+    viewArt: ViewArt
   ) {
     this._battle = battle;
     this._controllerSpecial = controllerSpecial;
-    this._viewConsole = new ViewConsole(_viewArt);
-    this._viewMenu = new ViewMenu(this._viewConsole, _viewArt);
+    this._viewConsole = new ViewConsole(viewArt);
+    this._viewMenu = new ViewMenu(this._viewConsole, viewArt);
     this._viewBattle = new ViewBattle(this._battle, this._viewConsole);
     this._viewSpecial = viewSpecial;
   }

@@ -1,4 +1,4 @@
-import Enemy from "../model/Emey";
+import Enemy from "../model/Enemy";
 import Player from "../model/Player";
 import chalk from "chalk";
 import ViewArt from "./ViewArt";

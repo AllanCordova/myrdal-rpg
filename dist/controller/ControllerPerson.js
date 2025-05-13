@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const Emey_1 = __importDefault(require("../model/Emey"));
+const Enemy_1 = __importDefault(require("../model/Enemy"));
 const Player_1 = __importDefault(require("../model/Player"));
 const ViewConsole_1 = __importDefault(require("../view/ViewConsole"));
 const ViewMenu_1 = __importDefault(require("../view/ViewMenu"));
@@ -40,17 +40,17 @@ class ControllerPerson {
         }
     }
     startEnemy() {
-        const demon = new Emey_1.default();
+        const demon = new Enemy_1.default();
         demon.startDemon();
-        const orc = new Emey_1.default();
+        const orc = new Enemy_1.default();
         orc.startOrc();
-        const skeleton = new Emey_1.default();
+        const skeleton = new Enemy_1.default();
         skeleton.startSkeleton();
-        const dragon = new Emey_1.default();
+        const dragon = new Enemy_1.default();
         dragon.startDragon();
-        const goblin = new Emey_1.default();
+        const goblin = new Enemy_1.default();
         goblin.startGoblin();
-        const vampire = new Emey_1.default();
+        const vampire = new Enemy_1.default();
         vampire.startVampire();
         return [demon, orc, skeleton, goblin, vampire, dragon];
     }

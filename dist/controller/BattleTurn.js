@@ -8,12 +8,11 @@ const ViewBattle_1 = __importDefault(require("../view/ViewBattle"));
 const ViewConsole_1 = __importDefault(require("../view/ViewConsole"));
 const BattleState_1 = require("../enum/BattleState");
 class BattleTurn {
-    constructor(battle, controllerSpecial, viewSpecial, _viewArt) {
-        this._viewArt = _viewArt;
+    constructor(battle, controllerSpecial, viewSpecial, viewArt) {
         this._battle = battle;
         this._controllerSpecial = controllerSpecial;
-        this._viewConsole = new ViewConsole_1.default(_viewArt);
-        this._viewMenu = new ViewMenu_1.default(this._viewConsole, _viewArt);
+        this._viewConsole = new ViewConsole_1.default(viewArt);
+        this._viewMenu = new ViewMenu_1.default(this._viewConsole, viewArt);
         this._viewBattle = new ViewBattle_1.default(this._battle, this._viewConsole);
         this._viewSpecial = viewSpecial;
     }

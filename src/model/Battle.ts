@@ -1,4 +1,4 @@
-import Enemy from "./Emey";
+import Enemy from "./Enemy";
 import Player from "./Player";
 
 export default class Battle {

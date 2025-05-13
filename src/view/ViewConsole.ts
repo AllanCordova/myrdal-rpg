@@ -4,7 +4,9 @@ import ViewArt from "./ViewArt";
 export default class ViewConsole {
   public constructor(private _viewArt: ViewArt) {}
 
-  public showBorder(): void {
+  public showBorder(text: string): void {
+    console.log(`----------------------------------------`);
+    console.log(text);
     console.log(`----------------------------------------`);
   }
 

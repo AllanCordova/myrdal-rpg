@@ -1,4 +1,4 @@
-import Enemy from "../model/Emey";
+import Enemy from "../model/Enemy";
 
 export default class Db {
   private _enemys!: Enemy[];

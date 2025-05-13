@@ -12,9 +12,8 @@ class ViewMenu {
     }
     mainMenu() {
         console.clear();
-        this._viewConsole.showBorder();
-        console.log(`${chalk_1.default.bold.cyan(`${this._viewConsole.alignText("", 10)}"The Myrdal Ultimate"`)}\n\n${chalk_1.default.red(this._viewArt.menuArt())}\n${chalk_1.default.magenta(`\n\n1.Iniciar\n2.Sobre\n3.Sair\n`)}`);
-        this._viewConsole.showBorder();
+        const text = `${chalk_1.default.bold.cyan(`${this._viewConsole.alignText("", 10)}"The Myrdal Ultimate"`)}\n\n${chalk_1.default.red(this._viewArt.menuArt())}\n${chalk_1.default.magenta(`\n\n1.Iniciar\n2.Sobre\n3.Sair\n`)}`;
+        this._viewConsole.showBorder(text);
         return readline_sync_1.default.question(chalk_1.default.yellow("se quiser jogar so apertar 1 (por favor faça isso mestre) ... "));
     }
     showAbout() {
@@ -24,15 +23,13 @@ class ViewMenu {
         console.log(chalk_1.default.red(`Obrigado por participar desse projeto! volte sempre.`));
     }
     battleMenu() {
-        this._viewConsole.showBorder();
-        console.log(`Seu turno mestre!\n1.Atacar\n2.Defender\n3.Special (não tente usar com a barra incompleta)`);
-        this._viewConsole.showBorder();
+        const text = `Seu turno mestre!\n1.Atacar\n2.Defender\n3.Special (não tente usar com a barra incompleta)`;
+        this._viewConsole.showBorder(text);
         return readline_sync_1.default.question(chalk_1.default.yellow(`vamos fazer o que essa rodada mestre? ... `));
     }
     personMenu() {
-        this._viewConsole.showBorder();
-        console.log(`Escolha de classe:${chalk_1.default.greenBright(`\n1.Anjo\n2.Guerreiro\n3.Mago`)}`);
-        this._viewConsole.showBorder();
+        const text = `Escolha de classe:${chalk_1.default.greenBright(`\n1.Anjo\n2.Guerreiro\n3.Mago`)}`;
+        this._viewConsole.showBorder(text);
         return readline_sync_1.default.question(chalk_1.default.yellow(`vamos com o que ... `));
     }
     playerName() {

@@ -8,7 +8,9 @@ class ViewConsole {
     constructor(_viewArt) {
         this._viewArt = _viewArt;
     }
-    showBorder() {
+    showBorder(text) {
+        console.log(`----------------------------------------`);
+        console.log(text);
         console.log(`----------------------------------------`);
     }
     isRight() {
