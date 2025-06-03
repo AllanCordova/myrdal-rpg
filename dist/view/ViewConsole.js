@@ -8,6 +8,9 @@ class ViewConsole {
     constructor(_viewArt) {
         this._viewArt = _viewArt;
     }
+    writeLine(value) {
+        console.log(value);
+    }
     showBorder(text) {
         console.log(`----------------------------------------`);
         console.log(text);

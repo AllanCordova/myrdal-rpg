@@ -12,8 +12,12 @@ class ControllerPerson {
     constructor(_viewArt) {
         this._viewArt = _viewArt;
         this._player = new Player_1.default();
+        this._controllerSpecial = new ControllerSpecial_1.default(0);
         this._viewConsole = new ViewConsole_1.default(_viewArt);
         this._viewMenu = new ViewMenu_1.default(this._viewConsole, _viewArt);
+    }
+    get controllerSpecial() {
+        return this._controllerSpecial;
     }
     startPlayer() {
         const name = this._viewMenu.playerName();
@@ -21,21 +25,25 @@ class ControllerPerson {
             this._viewMenu.nameValid();
             return this.startPlayer();
         }
+        this.setChargePerson(name);
+    }
+    setChargePerson(name) {
         switch (this._viewMenu.personMenu()) {
             case "1":
                 this._player.startAngel(name);
-                this._controllerSpecial = new ControllerSpecial_1.default(40);
+                this._controllerSpecial.chargeSpeed = 40;
                 break;
             case "2":
                 this._player.startFighter(name);
-                this._controllerSpecial = new ControllerSpecial_1.default(50);
+                this._controllerSpecial.chargeSpeed = 50;
                 break;
             case "3":
                 this._player.startMage(name);
-                this._controllerSpecial = new ControllerSpecial_1.default(30);
+                this._controllerSpecial.chargeSpeed = 38;
                 break;
             default:
                 this._player.startAngel(name);
+                this._controllerSpecial.chargeSpeed = 48;
                 break;
         }
     }
@@ -53,9 +61,6 @@ class ControllerPerson {
         const vampire = new Enemy_1.default();
         vampire.startVampire();
         return [demon, orc, skeleton, goblin, vampire, dragon];
-    }
-    get controllerSpecial() {
-        return this._controllerSpecial;
     }
 }
 exports.default = ControllerPerson;

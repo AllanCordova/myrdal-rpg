@@ -1,7 +1,8 @@
+import { BattleContract } from "../Interface/BattleInterface";
 import Enemy from "./Enemy";
 import Player from "./Player";
 
-export default class Battle {
+export default class Battle implements BattleContract {
   readonly _player: Player;
   readonly _enemy: Enemy;
 

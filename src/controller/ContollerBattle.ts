@@ -1,13 +1,6 @@
-import BattleTurn from "./BattleTurn";
-import ControllerSpecial from "./ControllerSpecial";
-import Battle from "../model/Battle";
-import Enemy from "../model/Enemy";
-import Player from "../model/Player";
-import SpecialAttack from "../model/SpecialAttack";
-import ViewBattle from "../view/ViewBattle";
-import ViewConsole from "../view/ViewConsole";
-import ViewSpecial from "../view/ViewSpecial";
-import ViewArt from "../view/ViewArt";
+import { BattleTurn, ControllerSpecial } from "./index";
+import { Battle, Enemy, Player, SpecialAttack } from "../model/index";
+import { ViewBattle, ViewConsole, ViewSpecial, ViewArt } from "../view/index";
 
 export default class ControllerBattle {
   private _battleTurn: BattleTurn;

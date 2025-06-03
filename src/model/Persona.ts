@@ -1,4 +1,4 @@
-export default class Persona {
+export default abstract class Persona {
   private _name!: string;
   private _hp!: number;
   private _maxHp!: number;
@@ -10,9 +10,7 @@ export default class Persona {
     return this.hp > 0;
   }
 
-  public getStatus(): string {
-    return `Name: ${this.name}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}`;
-  }
+  abstract getStatus(): string;
 
   public get name(): string {
     return this._name;

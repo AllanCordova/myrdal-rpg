@@ -52,7 +52,11 @@ export default class ControllerSpecial {
     this._specialCharge = 0;
   }
 
-  public getCharge(): number {
+  public get specialCharge(): number {
     return this._specialCharge;
+  }
+
+  public set chargeSpeed(value: number) {
+    this._chargeSpeed = value;
   }
 }

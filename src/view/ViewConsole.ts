@@ -4,6 +4,10 @@ import ViewArt from "./ViewArt";
 export default class ViewConsole {
   public constructor(private _viewArt: ViewArt) {}
 
+  public writeLine(value: string): void {
+    console.log(value);
+  }
+
   public showBorder(text: string): void {
     console.log(`----------------------------------------`);
     console.log(text);

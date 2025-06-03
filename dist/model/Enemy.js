@@ -57,5 +57,8 @@ class Enemy extends Persona_1.default {
         this.defense = 90;
         this.classType = ClassType_1.EnemyClass.Vampire;
     }
+    getStatus() {
+        return `Name: ${this.name}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}`;
+    }
 }
 exports.default = Enemy;

@@ -4,9 +4,6 @@ class Persona {
     isLive() {
         return this.hp > 0;
     }
-    getStatus() {
-        return `Name: ${this.name}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}`;
-    }
     get name() {
         return this._name;
     }

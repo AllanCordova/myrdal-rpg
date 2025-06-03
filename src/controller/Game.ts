@@ -8,10 +8,12 @@ import { GameState } from "../enum/GameState";
 
 export default class Game {
   private _viewMenu: ViewMenu;
-  private _controllerPerson: ControllerPerson;
-  private _controllerBattle!: ControllerBattle;
   private _viewConsole: ViewConsole;
   private _viewArt: ViewArt;
+
+  private _controllerPerson: ControllerPerson;
+  private _controllerBattle!: ControllerBattle;
+
   private _db: Db;
 
   public constructor() {
@@ -23,40 +25,45 @@ export default class Game {
   }
 
   public startGame(): void {
-    switch (this._viewMenu.mainMenu()) {
-      case GameState.Start:
-        this._controllerPerson.startPlayer();
-        const player = this._controllerPerson._player;
-        const special = this._controllerPerson.controllerSpecial;
+    try {
+      switch (this._viewMenu.mainMenu()) {
+        case GameState.Start:
+          this._controllerPerson.startPlayer();
+          const player = this._controllerPerson._player;
+          const special = this._controllerPerson.controllerSpecial;
 
-        const enemies = this._controllerPerson.startEnemy();
-        this._db.enemys = enemies;
+          const enemies = this._controllerPerson.startEnemy();
+          this._db.enemys = enemies;
 
-        for (let i = 0; i < this._db.enemys.length; i++) {
-          const enemy = this._db.enemys[i];
-          this._controllerBattle = new ControllerBattle(
-            player,
-            enemy,
-            special,
-            this._viewArt
-          );
-          this._controllerBattle.startBattle();
-          this._controllerBattle.endRound();
-          if (!player.isLive()) {
-            this._controllerBattle.gameOver();
-            break;
+          for (let i = 0; i < this._db.enemys.length; i++) {
+            const enemy = this._db.enemys[i];
+            this._controllerBattle = new ControllerBattle(
+              player,
+              enemy,
+              special,
+              this._viewArt
+            );
+            this._controllerBattle.startBattle();
+            this._controllerBattle.endRound();
+            if (!player.isLive()) {
+              this._controllerBattle.gameOver();
+              break;
+            }
           }
-        }
-        break;
-      case GameState.About:
-        this._viewMenu.showAbout();
-        break;
-      case GameState.Exit:
-        this._viewMenu.showClosedGame();
-        break;
-      default:
-        this._viewMenu.fluxValid();
-        return this.startGame();
+          break;
+        case GameState.About:
+          this._viewMenu.showAbout();
+          break;
+        case GameState.Exit:
+          this._viewMenu.showClosedGame();
+          break;
+        default:
+          this._viewMenu.fluxValid();
+          return this.startGame();
+      }
+    } catch (erro) {
+      this._viewConsole.writeLine(`Erro inesperado ${(erro as Error).message}`);
+      this.startGame();
     }
   }
 }

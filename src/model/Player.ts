@@ -1,7 +1,8 @@
 import Persona from "./Persona";
 import { PlayerClass } from "../enum/ClassType";
+import { PlayerContract } from "../Interface/PlayerInterface";
 
-export default class Player extends Persona {
+export default class Player extends Persona implements PlayerContract {
   private _super!: number;
 
   get super(): number {
@@ -40,5 +41,9 @@ export default class Player extends Persona {
     this._super = 400;
     this.defense = 50;
     this.classType = PlayerClass.Mage;
+  }
+
+  public getStatus(): string {
+    return `Name: ${this.name}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}, Super: ${this._super}`;
   }
 }

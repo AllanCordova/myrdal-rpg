@@ -39,5 +39,8 @@ class Player extends Persona_1.default {
         this.defense = 50;
         this.classType = ClassType_1.PlayerClass.Mage;
     }
+    getStatus() {
+        return `Name: ${this.name}, Atk: ${this.attack}, Def: ${this.defense}, Class: ${this.classType}, Super: ${this._super}`;
+    }
 }
 exports.default = Player;

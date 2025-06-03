@@ -21,7 +21,7 @@ class BattleTurn {
     }
     battleRound() {
         this._viewBattle.showFighters();
-        this._viewSpecial.showCharge(this._controllerSpecial.getCharge());
+        this._viewSpecial.showCharge(this._controllerSpecial.specialCharge);
         this.playerChoice();
         this._controllerSpecial.charge();
         if (!this._battle.battleOver()) {

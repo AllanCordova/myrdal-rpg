@@ -1,6 +1,6 @@
-import Battle from "../src/model/Battle";
-import Player from "../src/model/Player";
-import Enemy from "../src/model/Enemy";
+import Battle from "../model/Battle";
+import Player from "../model/Player";
+import Enemy from "../model/Enemy";
 
 const hero: Player = new Player();
 const vilon: Enemy = new Enemy();

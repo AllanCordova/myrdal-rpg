@@ -9,12 +9,17 @@ export default class ControllerPerson {
   readonly _player: Player;
   private _viewMenu: ViewMenu;
   private _viewConsole: ViewConsole;
-  private _controllerSpecial!: ControllerSpecial;
+  private _controllerSpecial: ControllerSpecial;
 
   public constructor(private _viewArt: ViewArt) {
     this._player = new Player();
+    this._controllerSpecial = new ControllerSpecial(0);
     this._viewConsole = new ViewConsole(_viewArt);
     this._viewMenu = new ViewMenu(this._viewConsole, _viewArt);
+  }
+
+  public get controllerSpecial(): ControllerSpecial {
+    return this._controllerSpecial;
   }
 
   public startPlayer(): void {
@@ -24,21 +29,26 @@ export default class ControllerPerson {
       return this.startPlayer();
     }
 
+    this.setChargePerson(name);
+  }
+
+  private setChargePerson(name: string): void {
     switch (this._viewMenu.personMenu()) {
       case "1":
         this._player.startAngel(name);
-        this._controllerSpecial = new ControllerSpecial(40);
+        this._controllerSpecial.chargeSpeed = 40;
         break;
       case "2":
         this._player.startFighter(name);
-        this._controllerSpecial = new ControllerSpecial(50);
+        this._controllerSpecial.chargeSpeed = 50;
         break;
       case "3":
         this._player.startMage(name);
-        this._controllerSpecial = new ControllerSpecial(30);
+        this._controllerSpecial.chargeSpeed = 38;
         break;
       default:
         this._player.startAngel(name);
+        this._controllerSpecial.chargeSpeed = 48;
         break;
     }
   }
@@ -63,9 +73,5 @@ export default class ControllerPerson {
     vampire.startVampire();
 
     return [demon, orc, skeleton, goblin, vampire, dragon];
-  }
-
-  public get controllerSpecial(): ControllerSpecial {
-    return this._controllerSpecial;
   }
 }

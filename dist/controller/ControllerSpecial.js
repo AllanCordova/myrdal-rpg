@@ -41,8 +41,11 @@ class ControllerSpecial {
     reset() {
         this._specialCharge = 0;
     }
-    getCharge() {
+    get specialCharge() {
         return this._specialCharge;
+    }
+    set chargeSpeed(value) {
+        this._chargeSpeed = value;
     }
 }
 exports.default = ControllerSpecial;
