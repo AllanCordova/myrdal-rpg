@@ -26,9 +26,10 @@ class Game {
                     const player = this._controllerPerson._player;
                     const special = this._controllerPerson.controllerSpecial;
                     const enemies = this._controllerPerson.startEnemy();
-                    this._db.enemys = enemies;
-                    for (let i = 0; i < this._db.enemys.length; i++) {
-                        const enemy = this._db.enemys[i];
+                    enemies.forEach(enemy => this._db.enemys.add(enemy));
+                    const enemiesList = this._db.enemys.getAll();
+                    for (let i = 0; i < enemiesList.length; i++) {
+                        const enemy = enemiesList[i];
                         this._controllerBattle = new ContollerBattle_1.default(player, enemy, special, this._viewArt);
                         this._controllerBattle.startBattle();
                         this._controllerBattle.endRound();

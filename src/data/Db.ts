@@ -1,13 +1,11 @@
-import Enemy from "../model/Enemy";
+import Enemy from "@model/Enemy";
+import Repository from "./Repository";
+
 
 export default class Db {
-  private _enemys!: Enemy[];
+  public enemys!: Repository<Enemy>;
 
-  public get enemys(): Enemy[] {
-    return this._enemys;
-  }
-
-  public set enemys(value: Enemy[]) {
-    this._enemys = value;
+  public constructor() {
+    this.enemys = new Repository<Enemy>();
   }
 }

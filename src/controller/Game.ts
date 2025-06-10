@@ -33,10 +33,12 @@ export default class Game {
           const special = this._controllerPerson.controllerSpecial;
 
           const enemies = this._controllerPerson.startEnemy();
-          this._db.enemys = enemies;
+          enemies.forEach(enemy => this._db.enemys.add(enemy));
 
-          for (let i = 0; i < this._db.enemys.length; i++) {
-            const enemy = this._db.enemys[i];
+          const enemiesList = this._db.enemys.getAll()
+
+          for (let i = 0; i < enemiesList.length; i++) {
+            const enemy = enemiesList[i];
             this._controllerBattle = new ControllerBattle(
               player,
               enemy,

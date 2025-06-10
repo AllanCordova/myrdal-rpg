@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Persona {
+    constructor() {
+        this.id = Date.now();
+    }
     isLive() {
         return this.hp > 0;
     }
