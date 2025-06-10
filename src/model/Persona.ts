@@ -1,6 +1,7 @@
 import { IEntity } from "Interface/EntityInterface";
 
 export default abstract class Persona implements IEntity{
+
   public id: number = Date.now()
   private _name!: string;
   private _hp!: number;

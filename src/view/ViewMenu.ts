@@ -57,7 +57,7 @@ export default class ViewMenu {
   public playerName(): string {
     console.clear();
     return readLineSync.question(
-      chalk.magenta(`Escolha um nome! para seu perssonagem mestre! ... `)
+      chalk.magenta(`Escolha um nome! para seu personagem mestre! ... `)
     );
   }
 

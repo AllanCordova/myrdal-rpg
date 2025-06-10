@@ -19,7 +19,7 @@ export default class ViewConsole {
   }
 
   public nextRound(): void {
-    readLineSync.question(`precione ...`);
+    readLineSync.question(`pressione ...`);
   }
 
   public alignText(text: string, length: number): string {

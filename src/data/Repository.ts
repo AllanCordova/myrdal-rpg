@@ -1,6 +1,4 @@
-export interface IEntity {
-    id: number | string;
-  }
+import { IEntity } from "Interface/EntityInterface";
   
   export default class Repository<T extends IEntity> {
     private _elements: T[] = [];

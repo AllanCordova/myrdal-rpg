@@ -34,7 +34,7 @@ class ViewMenu {
     }
     playerName() {
         console.clear();
-        return readline_sync_1.default.question(chalk_1.default.magenta(`Escolha um nome! para seu perssonagem mestre! ... `));
+        return readline_sync_1.default.question(chalk_1.default.magenta(`Escolha um nome! para seu personagem mestre! ... `));
     }
     nameValid() {
         readline_sync_1.default.question(chalk_1.default.red(`preciso de um nome, para te chamar mestre! ... `));

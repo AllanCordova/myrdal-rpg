@@ -20,7 +20,7 @@ class ViewConsole {
         readline_sync_1.default.question(`podemos continuar mestre? ... `);
     }
     nextRound() {
-        readline_sync_1.default.question(`precione ...`);
+        readline_sync_1.default.question(`pressione ...`);
     }
     alignText(text, length) {
         return text + " ".repeat(Math.max(0, length - text.length));

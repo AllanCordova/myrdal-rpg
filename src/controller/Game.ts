@@ -5,6 +5,7 @@ import Db from "../data/Db";
 import ViewConsole from "../view/ViewConsole";
 import ViewArt from "../view/ViewArt";
 import { GameState } from "../enum/GameState";
+import MyError from "error/MyError";
 
 export default class Game {
   private _viewMenu: ViewMenu;
@@ -64,7 +65,7 @@ export default class Game {
           return this.startGame();
       }
     } catch (erro) {
-      this._viewConsole.writeLine(`Erro inesperado ${(erro as Error).message}`);
+      this._viewConsole.writeLine(`Erro inesperado ${(erro as MyError).message}`);
       this.startGame();
     }
   }
